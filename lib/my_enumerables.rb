@@ -57,6 +57,35 @@ module Enumerable
     end
     return bool
   end
+
+  def my_count
+    count = 0
+    return count = self.size unless block_given?
+    for element in self
+      count +=1 if yield element
+    end
+    return count
+  end
+
+  def my_map
+    arr = []
+    if block_given?
+      self.each do |element|
+        arr << yield(element)
+      end
+      return arr
+    else
+      return arr
+    end
+  end
+
+  def my_inject(intial_value)
+    sum = intial_value
+    self.each do |element|
+      sum = yield(sum, element)
+    end
+    return sum
+  end
 end
 
 # You will first have to define my_each
